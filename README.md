@@ -2,11 +2,6 @@
 
     npm install appmakers-vue
 
-### Dependencies:
-
-    npm i axios axios-cache-adapter bootstrap-vue lodash moment vuex vue-select vue-grid-layout vue-switches
-    npm i node-sass sass-loader --save-dev
-
 ### Usage
 
 In your `main.js`:
@@ -17,4 +12,4 @@ In your `main.js`:
 
 ### Examples
 
-See the `examples` project to learn how to use various features.
+See the `docs` project to learn how to use various features.
