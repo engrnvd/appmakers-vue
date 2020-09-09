@@ -1,0 +1,13 @@
+/* Text between line css start*/
+.text-with-line {
+    display: flex;
+    flex-direction: row;
+    margin: 1em 0;
+}
+
+.text-with-line:before, .text-with-line:after {
+    content: "";
+    flex: 1 1;
+    border-bottom: 1px solid #eee;
+    margin: auto 8px;
+}

@@ -1,0 +1,37 @@
+$scrollbarSize: 8px;
+
+::-webkit-scrollbar {
+    background: transparent;
+    overflow: visible;
+    width: $scrollbarSize;
+}
+
+::-webkit-scrollbar:horizontal {
+    height: $scrollbarSize;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: $scrollbarSize * 0.5;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.4);
+}
+
+::-webkit-scrollbar-thumb:horizontal {
+    min-width: 40px;
+}
+
+::-webkit-scrollbar-thumb:vertical {
+    min-height: 40px;
+}
+
+::-webkit-scrollbar-track-piece {
+    background-color: rgba(0,0,0,0.05);
+    border-radius: $scrollbarSize * 0.5;
+}
+
+::-webkit-scrollbar-corner {
+    background: transparent;
+}

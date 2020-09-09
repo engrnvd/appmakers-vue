@@ -1,0 +1,17 @@
+.apm-clickable {
+    cursor: pointer;
+    transition: transform 50ms !important;
+}
+
+.apm-clickable:active {
+    transform: scale(0.9) !important;
+}
+
+.apm-clickable.disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+.apm-clickable.disabled:active {
+    transform: scale(1) !important;
+}

@@ -1,0 +1,24 @@
+.apm-count {
+    position: absolute;
+    font-size: 0.5em;
+    right: -0.5em;
+    top: -0.25em;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 0 0.3em;
+    border-radius: 0.5em;
+    text-align: center;
+    color: #fff;
+}
+
+$colors:
+    success #24cd63,
+    info #19a2b4,
+    warning #f18024,
+    danger #b33122
+;
+
+@each $variant, $color in $colors {
+    .apm-count-#{$variant} {
+        background-color: $color;
+    }
+}

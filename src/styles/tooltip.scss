@@ -1,0 +1,142 @@
+:root {
+    --tooltip-border-color: #252525;
+    --tooltip-text-color: #eee;
+    --tooltip-bg-color: #252525;
+}
+
+/* content */
+div:has([apm-tooltip]) {
+    overflow: visible;
+    background-color: red !important;
+}
+[apm-tooltip] {
+    position: relative;
+
+    &::after, &::before {
+        position: absolute;
+        z-index: 1000;
+        opacity: 0; // display: none/block, transition will not occur
+        transition: opacity 0.3s ease;
+        pointer-events: none;
+    }
+
+    &::after { // tooltip box
+        content: attr(apm-tooltip); // 1. attr() get tooltip attr and set value
+        //max-width: 200px;
+        font-size: 0.8rem;
+        padding: 0.25rem 0.5rem;
+        border-radius: 0.25rem;
+        line-height: 1.3;
+
+        white-space: pre; // naveed: this causes long text to be hidden
+
+        border: 1px solid var(--tooltip-border-color);
+        background-color: var(--tooltip-bg-color);
+        color: var(--tooltip-text-color);
+    }
+
+    &::before { // tooltip arrow
+        content: '';
+        border: 5px solid transparent;
+        border-top-color: var(--tooltip-border-color);
+    }
+
+
+    &:hover { // mouseenter, mouseleave
+        &::after, &::before {
+            opacity: 1;
+        }
+    }
+
+    /* config */
+    &[tooltip-effect="light"] { // 2. [effect="light"] get options and set themes
+        --tooltip-border-color: #eee;
+        --tooltip-text-color: #313131;
+        --tooltip-bg-color: #eee;
+    }
+
+    $placements: top bottom left right;
+    @each $placement in $placements {
+        &[tooltip-placement="#{$placement}"] {
+            &::after {
+                @extend .tooltip-placement-#{$placement};
+            }
+
+            &::before {
+                @extend .triangle-placement-#{$placement};
+            }
+        }
+    }
+
+    /* default config */
+    &:not([tooltip-placement]), &[tooltip-placement=""] {
+        &::after {
+            @extend .tooltip-placement-top;
+        }
+
+        &::before {
+            @extend .triangle-placement-top;
+        }
+    }
+}
+
+/* positions */
+.tooltip-placement-top, .triangle-placement-top {
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+
+.tooltip-placement-top {
+    bottom: calc(100% + 10px); // 3. 100% here is parent height, key point
+}
+
+.triangle-placement-top {
+    bottom: calc(100%); // 4. no need add 5px, because transparent border also takes place
+}
+
+// bottom
+.tooltip-placement-bottom, .triangle-placement-bottom {
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+
+.tooltip-placement-bottom {
+    top: calc(100% + 10px); // 3. 100% here is parent height, key point
+}
+
+.triangle-placement-bottom {
+    top: calc(100%); // 4. no need add 5px, because transparent border also takes place
+    transform: rotate(180deg);
+}
+
+// left
+.tooltip-placement-left, .triangle-placement-left {
+    top: 50%;
+    transform: translate(0, -50%);
+}
+
+.tooltip-placement-left {
+    right: calc(100% + 10px); // 3. 100% here is parent height, key point
+}
+
+.triangle-placement-left {
+    right: calc(100%); // 4. no need add 5px, because transparent border also takes place
+    border-top-color: transparent;
+    border-left-color: var(--tooltip-border-color);
+}
+
+// right
+.tooltip-placement-right, .triangle-placement-right {
+    top: 50%;
+    transform: translate(0, -50%);//transform: translate(-50%, 0);
+}
+
+.tooltip-placement-right {
+    left: calc(100% + 10px); // 3. 100% here is parent height, key point
+}
+
+.triangle-placement-right {
+    left: calc(100%); // 4. no need add 5px, because transparent border also takes place
+    border-top-color: transparent;
+    border-right-color: var(--tooltip-border-color);
+}
