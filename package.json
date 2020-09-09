@@ -1,6 +1,6 @@
 {
     "name": "appmakers-vue",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Vue utilities created with care and love by The AppMakers",
     "main": "src/index.js",
     "scripts": {
