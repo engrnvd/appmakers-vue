@@ -6,7 +6,7 @@
 
 <script>
 export default {
-    name: "components",
+    name: "index",
     props: {},
     data() {
         return {}

@@ -1,39 +1,68 @@
 <template>
     <div id="app">
-<!--        <div id="nav">-->
-<!--            <router-link to="/home">Home</router-link>-->
-<!--            |-->
-<!--            <router-link to="/components">Components</router-link>-->
-<!--        </div>-->
+        <b-navbar toggleable="lg" type="dark" variant="dark">
+            <b-navbar-brand href="#">AppMakers-Vue</b-navbar-brand>
 
-        <b-nav>
-            <b-nav-item to="/">Home</b-nav-item>
-            <b-nav-item to="/components">Components</b-nav-item>
-        </b-nav>
+            <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
-        <router-view/>
+            <b-collapse id="nav-collapse" is-nav>
+                <b-navbar-nav class="ml-auto">
+                    <b-nav-item to="/">Home</b-nav-item>
+
+                    <b-nav-item-dropdown
+                        :text="item.path.replace('/', '')"
+                        v-for="item in menu" :key="item.path"
+                        class="text-capitalize">
+                        <b-dropdown-item
+                            :to="item.path + '/' + subItem.path"
+                            class="text-lowercase"
+                            v-for="subItem in item.children" :key="subItem.path">
+                            {{ subItem.path }}
+                        </b-dropdown-item>
+                    </b-nav-item-dropdown>
+                </b-navbar-nav>
+            </b-collapse>
+        </b-navbar>
+
+        <main class="d-flex">
+            <div class="menu p-4">
+                <div v-for="item in menu" :key="item.path"
+                     class="text-capitalize mb-4">
+                    <div class="title mb-2">{{ item.path.replace('/', '') }}</div>
+                    <router-link :to="item.path + '/' + subItem.path"
+                       class="text-lowercase d-block menu-sub-item"
+                       v-for="subItem in item.children" :key="subItem.path">
+                        {{ subItem.path }}
+                    </router-link>
+                </div>
+            </div>
+
+            <div class="content flex-grow-1 p-4">
+                <router-view/>
+            </div>
+        </main>
     </div>
 </template>
 
-<style lang="scss">
-#app {
-    font-family: Avenir, Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    color: #2c3e50;
-}
+<script>
 
-#nav {
-    padding: 30px;
+import {menuRoutes} from "@/router/menu-routes";
 
-    a {
-        font-weight: bold;
-        color: #2c3e50;
-
-        &.router-link-exact-active {
-            color: #42b983;
+export default {
+    name: "App",
+    props: {},
+    data() {
+        return {
+            menu: menuRoutes
         }
-    }
+    },
+    methods: {}
+}
+</script>
+
+<style lang="scss">
+
+.menu-sub-item {
+    color: black;
 }
 </style>

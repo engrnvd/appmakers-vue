@@ -1,21 +1,13 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue';
+import {menuRoutes} from "@/router/menu-routes";
 
 Vue.use(VueRouter)
 
 const routes = [
-    {path: '/home', component: Home},
-    {
-        path: '/components',
-        component: () => import(/* webpackChunkName: "components" */ '../views/components/index'),
-        children: [
-            {
-                path: 'action-btn',
-                component: () => import(/* webpackChunkName: "action-btn" */ '../views/components/ApmActionBtnExample')
-            },
-        ]
-    }
+    {path: '/', component: Home},
+    ...menuRoutes
 ]
 
 const router = new VueRouter({
