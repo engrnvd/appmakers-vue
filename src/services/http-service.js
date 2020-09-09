@@ -1,25 +1,26 @@
 let axios = require('axios');
 import {setupCache} from 'axios-cache-adapter'
 
-// Create `axios-cache-adapter` instance
-const cache = setupCache({
-    maxAge: 2 * 60 * 1000
-});
-
-const api = axios.create({
-    adapter: cache.adapter,
-});
-
-api.interceptors.request.use(function (config) {
+axios.interceptors.request.use(function (config) {
     config.headers = config.headers || {};
-    config.headers.Authorization = "Bearer " + localStorage.getItem('token');
+    if (localStorage.getItem('token')) {
+        config.headers.Authorization = "Bearer " + localStorage.getItem('token');
+    }
+
+    if (!config.dontCache) {
+        const cache = setupCache({
+            maxAge: 2 * 60 * 1000
+        });
+
+        config.adapter = cache.adapter;
+    }
     return config;
 }, function (error) {
     // Do something with request error
     return Promise.reject(error);
 });
 
-api.interceptors.response.use(async function (response) {
+axios.interceptors.response.use(async function (response) {
     return response;
 }, function (error) {
     if (error.response) {
@@ -44,4 +45,4 @@ api.interceptors.response.use(async function (response) {
     return Promise.reject(error);
 });
 
-export const http = api;
+export const http = axios;
