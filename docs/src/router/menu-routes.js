@@ -11,6 +11,10 @@ export const menuRoutes = [
                 path: 'apm-actions-menu',
                 component: () => import(/* webpackChunkName: "action-menu" */ '../views/components/ApmActionMenuExample')
             },
+            {
+                path: 'apm-confirm',
+                component: () => import(/* webpackChunkName: "apm-confirm" */ '../views/components/ApmConfirmExample')
+            },
         ]
     },
     {
