@@ -15,3 +15,6 @@ In your `main.js`:
     
     Vue.use(AppMakersVue);
 
+### Examples
+
+See the `examples` project to learn how to use various features.
