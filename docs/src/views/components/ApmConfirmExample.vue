@@ -5,6 +5,7 @@
             title="Destroy"
             :options="options"
             @click="destroy()"
+            class="btn btn-danger"
         >Destroy Everything</apm-confirm>
     </div>
 </template>

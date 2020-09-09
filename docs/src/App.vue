@@ -65,4 +65,8 @@ export default {
 .menu-sub-item {
     color: black;
 }
+
+.router-link-exact-active {
+    color: #42b983;
+}
 </style>
