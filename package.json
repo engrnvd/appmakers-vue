@@ -22,5 +22,10 @@
     "devDependencies": {
         "node-sass": "^4.14.1",
         "sass-loader": "^10.0.2"
-    }
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/engrnvd/appmakers-vue"
+    },
+    "homepage": "https://github.com/engrnvd/appmakers-vue"
 }
