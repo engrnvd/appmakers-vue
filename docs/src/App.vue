@@ -1,5 +1,5 @@
 <template>
-    <div id="app">
+    <div id="app" class="d-flex flex-column">
         <b-navbar toggleable="lg" type="dark" variant="dark">
             <b-navbar-brand href="#">
                 <img src="/icon.svg" alt="Logo" class="logo">
@@ -27,7 +27,7 @@
             </b-collapse>
         </b-navbar>
 
-        <main class="d-flex">
+        <main class="d-flex flex-grow-1 overflow-hidden">
             <div class="menu p-4">
                 <div v-for="item in menu" :key="item.path"
                      class="text-capitalize mb-4">
@@ -65,9 +65,18 @@ export default {
 
 <style lang="scss">
 
+html, body, #app {
+    height: 100%;
+}
+
 .logo {
     width: 1.5em;
     height: auto;
+}
+
+.menu, .content {
+    height: 100%;
+    overflow-y: auto;
 }
 
 .menu-sub-item {

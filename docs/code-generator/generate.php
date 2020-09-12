@@ -57,7 +57,6 @@ foreach ($topics as $topic) {
         $subRoute = prepare("sub-topic.template", $topic, $file);
         $route = str_replace($stub, $subRoute . $stub, $route);
     }
-    echo $route;
     // insert route
     $routesFile = __DIR__ . "/../src/router/menu-routes.js";
     $stub = "// topics go here";
