@@ -8,7 +8,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
 import BootstrapVue from "bootstrap-vue";
 
-export const AppMakersVue = {
+export default {
     install(Vue, options) {
         Vue.use(BootstrapVue);
         ComponentRegistrar.register(Vue);
