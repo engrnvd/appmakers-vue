@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import {http} from "appmakers-vue/src/services/http-service";
+import {http} from "appmakers-vue/services/http-service";
 
 export default {
     name: "ApmActionBtnExample",

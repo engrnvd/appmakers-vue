@@ -1,7 +1,10 @@
 <template>
     <div id="app">
         <b-navbar toggleable="lg" type="dark" variant="dark">
-            <b-navbar-brand href="#">AppMakers-Vue</b-navbar-brand>
+            <b-navbar-brand href="#">
+                <img src="/icon.svg" alt="Logo" class="logo">
+                AppMakers-Vue
+            </b-navbar-brand>
 
             <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
@@ -61,6 +64,11 @@ export default {
 </script>
 
 <style lang="scss">
+
+.logo {
+    width: 1.5em;
+    height: auto;
+}
 
 .menu-sub-item {
     color: black;
