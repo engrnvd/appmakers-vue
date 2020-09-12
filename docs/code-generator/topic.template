@@ -1,0 +1,7 @@
+    {
+        path: '/%topic%',
+        component: () => import(/* webpackChunkName: "%topic%" */ '../views/%topic%/index'),
+        children: [
+// sub-topic-goes-here
+        ]
+    },

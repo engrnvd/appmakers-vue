@@ -1,0 +1,3 @@
+export const menuRoutes = [
+    // topics go here
+];

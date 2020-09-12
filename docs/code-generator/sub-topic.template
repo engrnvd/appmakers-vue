@@ -1,0 +1,4 @@
+            {
+                path: '%sub-topic-slug%',
+                component: () => import(/* webpackChunkName: "%sub-topic-slug%" */ '../views/%topic%/%sub-topic-name%Example')
+            },

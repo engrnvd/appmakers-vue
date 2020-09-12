@@ -1,0 +1,18 @@
+<template>
+    <div>
+        <h2>%topic% / %sub-topic-slug%</h2>
+    </div>
+</template>
+
+<script>
+export default {
+    name: "%sub-topic-name%Example",
+    data() {
+        return {}
+    },
+    methods: {
+    }
+}
+</script>
+
+<style scoped lang="scss"></style>

@@ -6,7 +6,7 @@
 
 In your `main.js`:
 
-    import {AppMakersVue} from "./appmakers-vue";
+    import AppMakersVue from "appmakers-vue";
     
     Vue.use(AppMakersVue);
 
