@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import {Resource} from "@/appmakers-vue/services/http-resource-service";
+import {Resource} from "appmakers-vue/services/http-resource-service";
 
 export default {
     name: "ApmRemoteSelect",
