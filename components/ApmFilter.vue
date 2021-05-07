@@ -117,6 +117,7 @@
                         'This Week',
                         'Last 2 Weeks',
                         'This Month',
+                        'Last 30 Days',
                         'Last 1 Month',
                         'Date Range',
                     ],
