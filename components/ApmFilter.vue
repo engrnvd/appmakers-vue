@@ -1,6 +1,6 @@
 <template>
     <div class="apm-filter">
-        <b-nav-item-dropdown>
+        <b-nav-item-dropdown @hide="onDropDownHide">
             <template v-slot:button-content>
                 <span class="sort-icon" v-if="isSorted">
                     <i class="mdi mdi-sort-descending" v-if="isDesc"></i>
@@ -37,7 +37,7 @@
                 <v-select
                         v-model="dateFilter.selected"
                         @input="setDateFilter"
-                        :options="dateFilter.options"></v-select>
+                        :options="dateRangeOptions"></v-select>
                 <v-date-picker mode="range"
                                v-if="dateFilter.selected == 'Date Range'"
                                v-model="dateRange"
@@ -103,6 +103,10 @@
                 type: Boolean,
                 default: false
             },
+            dateFilterOptions: {
+                type: Array,
+                default: false
+            },
         },
         data() {
             return {
@@ -113,6 +117,7 @@
                         'This Week',
                         'Last 2 Weeks',
                         'This Month',
+                        'Last 30 Days',
                         'Last 1 Month',
                         'Date Range',
                     ],
@@ -132,6 +137,13 @@
             }
         },
         methods: {
+            onDropDownHide(e) {
+                if (this.fieldType === 'date' && this.dateFilter.selected === "Date Range") {
+                    if (!this.value[this.fieldName] || !this.value[this.fieldName].start) {
+                        e.preventDefault();
+                    }
+                }
+            },
             setDateFilter(filter) {
                 console.log('setDateFilter', filter);
                 this.dateFilter.selected = filter;
@@ -144,6 +156,9 @@
                         break;
                     case 'Last 2 Weeks':
                         date.setDate(date.getDate() - 14);
+                        break;
+                    case 'Last 30 Days':
+                        date.setDate(date.getDate() - 30);
                         break;
                     case 'This Month':
                         date.setDate(1);
@@ -184,6 +199,10 @@
             }
         },
         computed: {
+            dateRangeOptions() {
+                if (this.dateFilterOptions) return this.dateFilterOptions;
+                return this.dateRange.options;
+            },
             dateRange: {
                 get() {
                     return this.dateFilter;
