@@ -19,7 +19,7 @@ export default {
     name: "ApmRemoteSelect",
     props: {
         url: String,
-        value: String,
+        value: {},
         valueField: {
             type: String,
             default: '_id'
