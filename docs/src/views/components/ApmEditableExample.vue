@@ -9,6 +9,14 @@
                     :url="`/menu-items/1`"
                     v-model="form.name"
                  />
+
+                <apm-editable
+                    type="checkbox"
+                    field="active"
+                    checkbox-switch
+                    :url="`/menu-items/1`"
+                    v-model="form.active"
+                />
             </div>
             <div class="ml-5">
                 <pre>{{ form }}</pre>
@@ -24,6 +32,7 @@ export default {
         return {
             form: {
                 name: '',
+                active: false
             }
         }
     },
