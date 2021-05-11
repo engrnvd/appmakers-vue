@@ -8,7 +8,7 @@
         :value="value"
         @input="onInput"
         @search="fetchOptions">
-        <template slot="no-options">{{ placeholder }}</template>
+        <template slot="no-options">{{ placeholder || (preLoadOptions ? 'Select an option' : 'Type to search...') }}</template>
     </v-select>
 </template>
 
@@ -51,8 +51,12 @@ export default {
         },
         placeholder: {
             type: String,
-            default: 'Type to search...'
+            default: ''
         },
+        preLoadOptions: {
+            type: Boolean,
+            default: false,
+        }
     },
     data() {
         return {
@@ -65,6 +69,8 @@ export default {
     },
     methods: {
         fetchOptions(searchValue, loading) {
+            if (this.preLoadOptions) return;
+
             if (!searchValue || searchValue.length < this.minSearchLength) {
                 return;
             }
@@ -84,15 +90,26 @@ export default {
         onInput(val) {
             this.$emit('input', val);
         },
-    },
-    updated() {
-        if (this.value && !this.options.length) {
-            this.req.url = `${this.url}?${this.valueField}=${this.value}`;
+        loadOptions() {
+            this.req.url = this.preLoadOptions ? this.url : `${this.url}?${this.valueField}=${this.value}`;
             this.req.send({
                 onSuccess: (res) => {
                     this.options = this.dataProp ? res.data[this.dataProp] : res.data;
                 },
             });
+        },
+        populatePreSelectedValue() {
+            if (this.value && !this.options.length) {
+                this.loadOptions();
+            }
+        },
+    },
+    updated() {
+        this.populatePreSelectedValue();
+    },
+    mounted() {
+        if (this.preLoadOptions) {
+            this.loadOptions();
         }
     }
 }
