@@ -103,10 +103,7 @@
                 type: Boolean,
                 default: false
             },
-            dateFilterOptions: {
-                type: Array,
-                default: false
-            },
+            dateFilterOptions: {},
         },
         data() {
             return {
@@ -145,7 +142,6 @@
                 }
             },
             setDateFilter(filter) {
-                console.log('setDateFilter', filter);
                 this.dateFilter.selected = filter;
                 let date = new Date();
                 switch (filter) {
