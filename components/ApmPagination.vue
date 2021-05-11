@@ -19,18 +19,22 @@
 </template>
 
 <script>
-    export default {
-        name: "ApmPagination",
-        props: {
-            resource: Object
-        },
-        data() {
-            return {}
-        },
-        methods: {}
-    }
+export default {
+    name: "ApmPagination",
+    props: {
+        resource: Object
+    },
+}
 </script>
 
-<style scoped>
+<style lang="scss">
+.pagination .page-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
+    .mdi:before {
+        margin-left: 0;
+    }
+}
 </style>
