@@ -105,11 +105,12 @@ Res.prototype.send = function (config) {
 };
 
 Res.prototype.upload = function (config, files = [], key = 'attachments', single = false) {
+    if (files instanceof File) files = [files];
     if (files.length) {
         let formData = new FormData();
         if (config.hasOwnProperty('data')) {
             for (let key in config.data) {
-                formData.set(key, config.data[key]);
+                formData.set(key, typeof config.data[key] === 'object' ? JSON.stringify(config.data[key]) : config.data[key]);
             }
         }
         if (single) {
