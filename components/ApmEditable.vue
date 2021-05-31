@@ -94,7 +94,7 @@
 
             <span v-else>
                 <span :class="{'text-muted': !valueToShow}">
-                    {{ (valueToShow ? valueToShow : 'not set') | truncate(charLimit) }}
+                    {{ ((valueToShow || valueToShow === 0) ? valueToShow : 'not set') | truncate(charLimit) }}
                 </span>
                 <a href @click.prevent="editMode = true" v-if="showIcon" class="edit-icon">
                     <i class="mdi mdi-lead-pencil"></i>

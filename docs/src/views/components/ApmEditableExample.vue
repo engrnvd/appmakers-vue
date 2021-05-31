@@ -3,6 +3,7 @@
         <h2>components / apm-editable</h2>
         <div class="d-flex">
             <div class="mr-5" style="width: 300px">
+                <p>Name: </p>
                 <apm-editable
                     type="text"
                     field="name"
@@ -10,12 +11,21 @@
                     v-model="form.name"
                  />
 
+                <p>Switch: </p>
                 <apm-editable
                     type="checkbox"
                     field="active"
                     checkbox-switch
                     :url="`/menu-items/1`"
                     v-model="form.active"
+                />
+
+
+                <p>Amount: </p>
+                <apm-editable
+                    type="text"
+                    field="amount"
+                    v-model="form.amount"
                 />
             </div>
             <div class="ml-5">
@@ -32,7 +42,8 @@ export default {
         return {
             form: {
                 name: '',
-                active: false
+                active: false,
+                amount: 0,
             }
         }
     },
